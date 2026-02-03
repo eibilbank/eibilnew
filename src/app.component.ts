@@ -1,25 +1,13 @@
 
 import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
-import { HeroComponent } from './components/hero/hero.component';
-import { ServicesComponent } from './components/services/services.component';
-import { AboutComponent } from './components/about/about.component';
-import { CalculatorComponent } from './components/calculator/calculator.component';
-import { ContactComponent } from './components/contact/contact.component';
 import { FooterComponent } from './components/footer/footer.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    HeaderComponent,
-    HeroComponent,
-    ServicesComponent,
-    AboutComponent,
-    CalculatorComponent,
-    ContactComponent,
-    FooterComponent
-  ]
+  imports: [HeaderComponent, FooterComponent, RouterOutlet],
 })
 export class AppComponent {}

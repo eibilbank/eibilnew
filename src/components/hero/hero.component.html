@@ -11,6 +11,11 @@
       <button (click)="scrollTo('services')" class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105 shadow-xl">
         Explore Our Services
       </button>
+
+      <div class="mt-12 bg-white/50 backdrop-blur-sm p-4 rounded-lg max-w-2xl mx-auto shadow-md">
+        <p class="font-semibold text-blue-800">💡 Financial Tip of the Day</p>
+        <p class="text-gray-700 italic mt-1">{{ financialTip() }}</p>
+      </div>
     </div>
   </div>
 </section>

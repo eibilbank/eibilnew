@@ -1,0 +1,71 @@
+
+<!-- Product Page Skeleton -->
+@if (isProductPage()) {
+  <div>
+    <!-- Hero Skeleton -->
+    <div class="h-64 md:h-80 bg-gray-200 animate-pulse">
+      <div class="container mx-auto px-6 h-full flex flex-col justify-center">
+        <div class="h-4 w-1/4 bg-gray-300 rounded animate-pulse mb-2"></div>
+        <div class="h-12 w-1/2 bg-gray-300 rounded animate-pulse"></div>
+        <div class="h-6 w-1/3 bg-gray-300 rounded animate-pulse mt-2"></div>
+      </div>
+    </div>
+    <!-- Content Skeleton -->
+    <div class="bg-gray-50 py-16">
+      <div class="container mx-auto px-6">
+        <div class="bg-white p-8 rounded-2xl shadow-xl">
+          <div class="h-5 bg-gray-200 rounded w-full animate-pulse mb-2"></div>
+          <div class="h-5 bg-gray-200 rounded w-5/6 animate-pulse mb-8"></div>
+          <!-- Tabs Skeleton -->
+          <div class="border-b border-gray-200 mb-6 flex space-x-6">
+            <div class="h-10 w-24 bg-gray-200 rounded-t-md animate-pulse"></div>
+            <div class="h-10 w-24 bg-gray-100 rounded-t-md animate-pulse"></div>
+            <div class="h-10 w-32 bg-gray-100 rounded-t-md animate-pulse"></div>
+            <div class="h-10 w-32 bg-gray-100 rounded-t-md animate-pulse"></div>
+          </div>
+          <!-- Tab Content Skeleton -->
+          <div class="space-y-3">
+            <div class="h-4 bg-gray-200 rounded w-full animate-pulse"></div>
+            <div class="h-4 bg-gray-200 rounded w-5/6 animate-pulse"></div>
+            <div class="h-4 bg-gray-200 rounded w-full animate-pulse"></div>
+            <div class="h-4 bg-gray-200 rounded w-4/6 animate-pulse"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+} @else {
+  <!-- Investor Page Skeleton -->
+  <div class="bg-gray-50">
+      <div class="container mx-auto px-6 py-12">
+          <div class="h-4 bg-gray-200 rounded w-1/3 mb-4 animate-pulse"></div>
+          <div class="flex flex-wrap lg:flex-nowrap -mx-4">
+              <!-- Main Content Skeleton -->
+              <main class="w-full lg:w-3/4 px-4">
+                  <div class="bg-white p-8 md:p-12 rounded-2xl shadow-xl">
+                      <div class="h-10 bg-gray-300 rounded w-3/4 mb-6 animate-pulse"></div>
+                      <div class="space-y-3">
+                          <div class="h-4 bg-gray-200 rounded w-full animate-pulse"></div>
+                          <div class="h-4 bg-gray-200 rounded w-full animate-pulse"></div>
+                          <div class="h-4 bg-gray-200 rounded w-5/6 animate-pulse"></div>
+                          <div class="h-4 bg-gray-200 rounded w-full mt-4 animate-pulse"></div>
+                          <div class="h-4 bg-gray-200 rounded w-4/6 animate-pulse"></div>
+                      </div>
+                  </div>
+              </main>
+              <!-- Sidebar Skeleton -->
+              <aside class="w-full lg:w-1/4 px-4 mt-8 lg:mt-0">
+                  <div class="bg-white p-6 rounded-2xl shadow-xl">
+                      <div class="h-6 bg-gray-300 rounded w-1/2 mb-4 animate-pulse"></div>
+                      <div class="space-y-2">
+                          <div class="h-8 bg-gray-200 rounded animate-pulse"></div>
+                          <div class="h-8 bg-gray-200 rounded animate-pulse"></div>
+                          <div class="h-8 bg-gray-200 rounded animate-pulse"></div>
+                          <div class="h-8 bg-gray-200 rounded animate-pulse"></div>
+                      </div>
+                  </div>
+              </aside>
+          </div>
+      </div>
+  </div>
+}

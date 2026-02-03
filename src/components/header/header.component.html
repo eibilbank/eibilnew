@@ -1,17 +1,74 @@
 
 <header class="bg-white/80 backdrop-blur-md shadow-md sticky top-0 z-50">
   <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-    <a href="#" (click)="$event.preventDefault(); scrollTo('hero')" class="text-2xl font-bold text-blue-800">
+    <a routerLink="/" (click)="closeMobileMenu()" class="text-2xl font-bold text-blue-800">
       Eibil Nidhi <span class="text-pink-500">Limited</span>
     </a>
-    <nav class="hidden md:flex space-x-8">
-      <a href="#" (click)="$event.preventDefault(); scrollTo('services')" class="text-gray-600 hover:text-pink-500 transition-colors duration-300">Services</a>
-      <a href="#" (click)="$event.preventDefault(); scrollTo('about')" class="text-gray-600 hover:text-pink-500 transition-colors duration-300">About Us</a>
-      <a href="#" (click)="$event.preventDefault(); scrollTo('calculator')" class="text-gray-600 hover:text-pink-500 transition-colors duration-300">EMI Calculator</a>
-      <a href="#" (click)="$event.preventDefault(); scrollTo('contact')" class="text-gray-600 hover:text-pink-500 transition-colors duration-300">Contact</a>
+
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex items-center space-x-8">
+      <!-- Products Dropdown -->
+      <div class="relative" (mouseenter)="showDropdown('products')" (mouseleave)="hideDropdown()">
+        <button class="flex items-center text-gray-600 hover:text-pink-500 transition-colors duration-300 focus:outline-none">
+          Products
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </button>
+        @if (activeDropdown() === 'products') {
+          <div class="absolute -left-4 mt-2 w-64 bg-white rounded-lg shadow-xl z-20 py-2 transition-all duration-300">
+            @for (product of products; track product.slug) {
+              <a [routerLink]="['/products', product.slug]" class="block px-4 py-2 text-sm text-gray-700 hover:bg-pink-50 hover:text-pink-600">{{ product.name }}</a>
+            }
+          </div>
+        }
+      </div>
+
+      <!-- Investor Dropdown -->
+      <div class="relative" (mouseenter)="showDropdown('investors')" (mouseleave)="hideDropdown()">
+        <button class="flex items-center text-gray-600 hover:text-pink-500 transition-colors duration-300 focus:outline-none">
+          Investor
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </button>
+        @if (activeDropdown() === 'investors') {
+          <div class="absolute -left-4 mt-2 w-72 bg-white rounded-lg shadow-xl z-20 py-2 transition-all duration-300 max-h-96 overflow-y-auto">
+            @for (item of investors; track item.slug) {
+              <a [routerLink]="['/investor', item.slug]" class="block px-4 py-2 text-sm text-gray-700 hover:bg-pink-50 hover:text-pink-600">{{ item.name }}</a>
+            }
+          </div>
+        }
+      </div>
+
+      <a (click)="$event.preventDefault(); scrollTo('about')" class="cursor-pointer text-gray-600 hover:text-pink-500 transition-colors duration-300">About Us</a>
+      <a (click)="$event.preventDefault(); scrollTo('calculator')" class="cursor-pointer text-gray-600 hover:text-pink-500 transition-colors duration-300">EMI Calculator</a>
+      <a (click)="$event.preventDefault(); scrollTo('contact')" class="cursor-pointer text-gray-600 hover:text-pink-500 transition-colors duration-300">Contact</a>
     </nav>
     <button class="hidden md:block bg-pink-500 hover:bg-pink-600 text-white font-semibold py-2 px-4 rounded-full transition-all duration-300 shadow-lg">
       Member Login
     </button>
+    
+    <!-- Mobile Menu Button -->
+    <div class="md:hidden">
+      <button (click)="toggleMobileMenu()" class="text-gray-600 hover:text-pink-500 focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+      </button>
+    </div>
   </div>
+
+  <!-- Mobile Nav Overlay -->
+  @if (isMobileMenuOpen()) {
+    <div class="fixed inset-0 bg-white/95 z-40 backdrop-blur-sm md:hidden">
+      <nav class="flex flex-col items-center justify-center h-full space-y-6 text-xl">
+        <h3 class="font-bold text-blue-800">Products</h3>
+        @for (product of products; track product.slug) {
+            <a [routerLink]="['/products', product.slug]" (click)="closeMobileMenu()" class="text-gray-700 hover:text-pink-600 text-base">{{ product.name }}</a>
+        }
+        <h3 class="font-bold text-blue-800 pt-4">Investor</h3>
+        @for (item of investors; track item.slug) {
+            <a [routerLink]="['/investor', item.slug]" (click)="closeMobileMenu()" class="text-gray-700 hover:text-pink-600 text-base">{{ item.name }}</a>
+        }
+        <a (click)="$event.preventDefault(); scrollTo('about')" class="cursor-pointer pt-4 text-gray-600 hover:text-pink-500 transition-colors duration-300">About Us</a>
+        <a (click)="$event.preventDefault(); scrollTo('calculator')" class="cursor-pointer text-gray-600 hover:text-pink-500 transition-colors duration-300">EMI Calculator</a>
+        <a (click)="$event.preventDefault(); scrollTo('contact')" class="cursor-pointer text-gray-600 hover:text-pink-500 transition-colors duration-300">Contact</a>
+      </nav>
+    </div>
+  }
 </header>
