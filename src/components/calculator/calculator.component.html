@@ -1,0 +1,69 @@
+
+<section id="calculator" class="py-20 bg-white">
+  <div class="container mx-auto px-6">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-blue-900">Loan EMI Calculator</h2>
+      <p class="text-gray-600 mt-2 max-w-2xl mx-auto">Plan your finances with our easy-to-use EMI calculator.</p>
+    </div>
+    <div class="flex flex-wrap lg:flex-nowrap bg-gradient-to-br from-blue-100 to-pink-100 p-8 rounded-2xl shadow-xl">
+      <!-- Input Section -->
+      <div class="w-full lg:w-1/2 lg:pr-8">
+        <div class="mb-6">
+          <div class="flex justify-between items-center mb-2">
+            <label for="loanAmount" class="font-semibold text-blue-800">Loan Amount (₹)</label>
+            <input type="text" class="w-32 text-right bg-white rounded-md p-2 font-bold text-pink-600" [ngModel]="loanAmount()" (ngModelChange)="loanAmount.set($event)" />
+          </div>
+          <input id="loanAmount" type="range" [min]="minLoanAmount" [max]="maxLoanAmount" step="10000" [value]="loanAmount()" (input)="onLoanAmountChange($event)" class="w-full h-2 bg-blue-200 rounded-lg appearance-none cursor-pointer accent-pink-500">
+          <div class="flex justify-between text-xs text-gray-600 mt-1">
+            <span>₹{{minLoanAmount.toLocaleString('en-IN')}}</span>
+            <span>₹{{maxLoanAmount.toLocaleString('en-IN')}}</span>
+          </div>
+        </div>
+        <div class="mb-6">
+          <div class="flex justify-between items-center mb-2">
+            <label for="interestRate" class="font-semibold text-blue-800">Interest Rate (%)</label>
+            <input type="text" class="w-32 text-right bg-white rounded-md p-2 font-bold text-pink-600" [ngModel]="interestRate()" (ngModelChange)="interestRate.set($event)" />
+          </div>
+          <input id="interestRate" type="range" [min]="minInterestRate" [max]="maxInterestRate" step="0.1" [value]="interestRate()" (input)="onInterestRateChange($event)" class="w-full h-2 bg-blue-200 rounded-lg appearance-none cursor-pointer accent-pink-500">
+          <div class="flex justify-between text-xs text-gray-600 mt-1">
+            <span>{{minInterestRate}}%</span>
+            <span>{{maxInterestRate}}%</span>
+          </div>
+        </div>
+        <div class="mb-6">
+          <div class="flex justify-between items-center mb-2">
+            <label for="tenureYears" class="font-semibold text-blue-800">Loan Tenure (Years)</label>
+            <input type="text" class="w-32 text-right bg-white rounded-md p-2 font-bold text-pink-600" [ngModel]="tenureYears()" (ngModelChange)="tenureYears.set($event)" />
+          </div>
+          <input id="tenureYears" type="range" [min]="minTenure" [max]="maxTenure" step="1" [value]="tenureYears()" (input)="onTenureYearsChange($event)" class="w-full h-2 bg-blue-200 rounded-lg appearance-none cursor-pointer accent-pink-500">
+          <div class="flex justify-between text-xs text-gray-600 mt-1">
+            <span>{{minTenure}} Year</span>
+            <span>{{maxTenure}} Years</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Output Section -->
+      <div class="w-full lg:w-1/2 lg:pl-8 mt-8 lg:mt-0 lg:border-l-2 lg:border-blue-200 flex flex-col justify-center items-center text-center">
+        <h3 class="text-xl font-semibold text-blue-800 mb-2">Your Monthly EMI</h3>
+        <p class="text-4xl md:text-5xl font-bold text-pink-600 mb-6">
+          ₹{{ monthlyEmi().toLocaleString('en-IN', { minimumFractionDigits: 0, maximumFractionDigits: 0 }) }}
+        </p>
+        <div class="w-full max-w-sm">
+          <div class="flex justify-between py-2 border-b border-blue-200">
+            <span class="text-gray-700">Principal Amount</span>
+            <span class="font-semibold text-blue-900">₹{{ loanAmount().toLocaleString('en-IN') }}</span>
+          </div>
+          <div class="flex justify-between py-2 border-b border-blue-200">
+            <span class="text-gray-700">Total Interest</span>
+            <span class="font-semibold text-blue-900">₹{{ totalInterest().toLocaleString('en-IN', { minimumFractionDigits: 0, maximumFractionDigits: 0 }) }}</span>
+          </div>
+          <div class="flex justify-between py-2 font-bold">
+            <span class="text-gray-700">Total Payment</span>
+            <span class="text-blue-900">₹{{ totalPayment().toLocaleString('en-IN', { minimumFractionDigits: 0, maximumFractionDigits: 0 }) }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
